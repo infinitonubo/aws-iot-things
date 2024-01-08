@@ -1,0 +1,42 @@
+name: Create IoT Things
+
+on:
+  workflow_dispatch:
+    inputs:
+      thingName:
+        description: 'Provide thingName for the IoT Thing'
+        required: true
+
+jobs:
+  create-iot-thing:
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
+    env:
+      AWS_REGION: 'us-east-1'
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ secrets.ROLE }}
+          role-session-name: ${{ secrets.SESSION_NAME }}
+          mask-aws-account-id: false
+          aws-region: ${{ env.AWS_REGION }}
+          role-duration-seconds: 7200
+
+      - name: Execute Script
+        run: |
+          node index.js ${{ github.event.inputs.thingName }}
