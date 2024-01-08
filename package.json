@@ -1,0 +1,22 @@
+{
+  "name": "aws-iot-things",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/infinitonubo/aws-iot-things.git"
+  },
+  "author": "amansingh14",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/infinitonubo/aws-iot-things/issues"
+  },
+  "homepage": "https://github.com/infinitonubo/aws-iot-things#readme",
+  "dependencies": {
+    "aws-sdk": "^2.1531.0"
+  }
+}
